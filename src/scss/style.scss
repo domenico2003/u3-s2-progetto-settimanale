@@ -1,0 +1,32 @@
+@import "./mybootstrap";
+body {
+  background-color: #5a97dd;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.shadow-xl {
+  box-shadow: -1px 0rem 3rem 1rem rgba(0, 0, 0, 0.475);
+}
+
+.button-shadow {
+  box-shadow: 0 0.2rem 0rem #292929;
+}
+
+.my-alert {
+  background-color: rgba(0, 0, 255, 0.267);
+  box-shadow: 0px 0.2rem 1rem 0.1rem rgba(0, 0, 0, 0.475);
+}
+
+.my-lineHeigth {
+  line-height: 0.8;
+}
+
+.my-shadow {
+  box-shadow: -1px 0rem 3rem 0rem rgba(0, 0, 0, 0.475);
+}
+
+.mini-box {
+  border-radius: 40px;
+  box-shadow: -1px 0rem 3rem 0rem rgba(0, 0, 0, 0.475);
+  padding-block: 50px;
+}

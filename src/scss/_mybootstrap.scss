@@ -1,0 +1,79 @@
+@import "bootstrap/scss/functions";
+
+$meteo-color: #1155a3;
+$header-color: #3d72ae;
+$dark-black: black;
+$h7-font-size: 0.8rem;
+$home-info-color: skyblue;
+$alert-color: #5a97dd;
+@import "bootstrap/scss/variables";
+
+$custom-color: (
+  "meteo": $meteo-color,
+  "header": $header-color,
+  "nero": rgba(46, 46, 46, 0),
+  "nero-puro": $dark-black,
+  "grigio": $gray-200,
+  "grigio-1": $gray-600,
+  "home-info": $home-info-color,
+  "alert": black,
+  "yellow": yellow,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-color);
+
+$custom-size: (
+  7: $h7-font-size,
+  8: 8rem,
+);
+$font-sizes: map-merge($font-sizes, $custom-size);
+
+$custom-spacings: (
+  6: $spacer * 8,
+  7: $spacer * 4.8,
+);
+
+$spacers: map-merge($spacers, $custom-spacings);
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
