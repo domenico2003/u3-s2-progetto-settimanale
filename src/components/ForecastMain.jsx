@@ -28,7 +28,7 @@ const ForecastMain = ({ meteo }) => {
             <h2 className="text-center my-5">
               vedi le previsioni per i prossimi giorni
             </h2>
-            {previsioniArr && (
+            {previsioniArr !== "undefined " && (
               <CardDetails dataPrev={previsioniArr[valueInput]} />
             )}
             <input
