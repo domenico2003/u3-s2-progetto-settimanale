@@ -49,7 +49,7 @@ const Header = ({
           {queryMeteo && (
             <Link
               to={`/details/${JSON.stringify(queryMeteo.coord)}`}
-              className="btn btn-home-info px-5 rounded-5 button-shadow"
+              className="btn btn-home-info px-5 rounded-5 hover button-shadow"
             >
               {localita?.name} {queryGradi.toFixed(0)} ℃
             </Link>
@@ -68,7 +68,7 @@ const Header = ({
           {milanoMeteo && (
             <Link
               to={`/details/${JSON.stringify(milanoMeteo.coord)}`}
-              className="btn btn-home-info px-5 rounded-5 button-shadow"
+              className="btn btn-home-info px-5 hover rounded-5 button-shadow"
             >
               Milano {milanoGradi.toFixed(0)} ℃
             </Link>
@@ -76,7 +76,7 @@ const Header = ({
           {romaMeteo && (
             <Link
               to={`/details/${JSON.stringify(romaMeteo.coord)}`}
-              className="btn btn-home-info px-5 rounded-5 button-shadow"
+              className="btn btn-home-info px-5 hover rounded-5 button-shadow"
             >
               Roma {romaGradi.toFixed(0)} ℃
             </Link>
@@ -84,7 +84,7 @@ const Header = ({
           {napoliMeteo && (
             <Link
               to={`/details/${JSON.stringify(napoliMeteo.coord)}`}
-              className="btn btn-home-info px-5 rounded-5 button-shadow"
+              className="btn btn-home-info px-5 hover rounded-5 button-shadow"
             >
               Napoli {napoliGradi.toFixed(0)} ℃
             </Link>

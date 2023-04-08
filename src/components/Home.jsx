@@ -18,13 +18,7 @@ const Home = () => {
     meteoFetc(45.4642, 9.1896, setMilanoMeteo, setMilanoGradi);
     meteoFetc(41.8933, 12.4829, setRomaMeteo, setRomaGradi);
     meteoFetc(40.8359, 14.2488, setNapoliMeteo, setNapoliGradi);
-  }, []);
-  useEffect(() => {
-    console.log(milanoMeteo);
-    console.log(romaMeteo);
-    console.log(napoliMeteo);
-    console.log(queryMeteo);
-  }, [milanoMeteo, romaMeteo, napoliMeteo, queryMeteo]);
+  }, [queryMeteo]);
 
   const meteoFetc = async (latitudine, longitudine, setState, setGradi) => {
     let risposta = await fetch(

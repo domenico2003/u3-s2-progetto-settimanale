@@ -24,7 +24,7 @@ $theme-colors: map-merge($theme-colors, $custom-color);
 
 $custom-size: (
   7: $h7-font-size,
-  8: 8rem,
+  8: 4rem,
 );
 $font-sizes: map-merge($font-sizes, $custom-size);
 
