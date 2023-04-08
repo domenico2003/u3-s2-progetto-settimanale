@@ -24,7 +24,7 @@ const Details = () => {
 
   const meteoForecastFetc = async () => {
     let risposta = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinate.lat}&lon=${coordinate.lon}&appid=d9a758ed2e02f0cca673b9510c99e761`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinate.lat}&lon=${coordinate.lon}&units=metric&appid=d9a758ed2e02f0cca673b9510c99e761`
     );
     let dato = await risposta.json();
     setForecastMeteo(dato);
