@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import HomeMain from "./HomeMain";
+import { useSelector } from "react-redux";
+import PreferHome from "./PreferHome";
 
 const Home = () => {
+  let meteoPreferiti = useSelector((state) => state.preferiti.content);
   let [milanoMeteo, setMilanoMeteo] = useState(null);
   let [milanoGradi, setMilanoGradi] = useState(null);
   let [romaMeteo, setRomaMeteo] = useState(null);
@@ -46,6 +49,7 @@ const Home = () => {
         queryGradi={queryGradi}
         queryMeteo={queryMeteo}
       />
+      {<PreferHome meteoPreferiti={meteoPreferiti} />}
       {queryMeteo && <HomeMain meteoObj={queryMeteo} />}
       {milanoMeteo && <HomeMain meteoObj={milanoMeteo} />}
       {romaMeteo && <HomeMain meteoObj={romaMeteo} />}

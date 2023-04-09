@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const HomeMain = ({ meteoObj }) => {
+const HomeMain = ({ meteoObj, setPreferiti }) => {
   let navigate = useNavigate();
   let dispatch = useDispatch();
   let location = useLocation();
   let [gradi, setGradi] = useState("");
   let [maxGradi, setMaxGradi] = useState("");
   let [minGradi, setMinGradi] = useState("");
-
+  let [starSelected, setStarSelected] = useState(false);
+  let [totalPrefer, setTotalPrefer] = useState([]);
+  let preferiti = useSelector((state) => state.preferiti.content);
   useEffect(() => {
     setGradi(meteoObj.main.temp);
     setMaxGradi(meteoObj.main.temp_max);
@@ -19,40 +21,82 @@ const HomeMain = ({ meteoObj }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [meteoObj]);
 
+  // useEffect(()=>{
+
+  // },[])
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "preferiti",
+
+      JSON.stringify(preferiti)
+    );
+    Preferiti();
+  }, [starSelected]);
+  const Preferiti = () => {
+    let risp = JSON.parse(window.localStorage.getItem("preferiti"));
+    setTotalPrefer(risp);
+  };
+
+  useEffect(() => {
+    console.log(JSON.parse(window.localStorage.getItem("preferiti")));
+  });
+
   return (
     <>
       {meteoObj && (
         <Container
-          className={`pb-5 px-0  pt-3 mt-5 my-shadow w-75 rounded-5  hover ${
-            location.pathname === "/" && "cursor"
-          }
+          className={`pb-5 px-0  pt-3 mt-5 my-shadow w-75 rounded-5  hover 
+          
               `}
-          onClick={() => {
-            location.pathname === "/" &&
-              navigate(`/details/${JSON.stringify(meteoObj.coord)}`);
-            dispatch({ type: "SET_ACTUAL_METEO", payload: meteoObj });
-          }}
         >
-          <h2 className="text-center m-0 fs-1">
-            {location.pathname === "/" && `${meteoObj.name} ─${" "}`}
-            <span>{`${new Date(meteoObj.dt * 1000).getHours()}:${new Date(
-              meteoObj.dt
-            ).getMinutes()}`}</span>
-          </h2>
-          <hr className="border-top border-4" />
-          <p className="fs-8 text-center my-lineHeigth m-0">
-            {Number(gradi).toFixed(0)}℃
-          </p>
-          <span className="d-block text-center my-2 fs-5">
-            percepita: {Number(meteoObj.main.feels_like).toFixed(0)}℃
-          </span>
-          <div className="d-flex justify-content-center gap-5 mb-4 ">
-            <span className=" fs-5">
-              Massima:{Number(maxGradi).toFixed(0)}℃
-            </span>
-            <span className=" fs-5">Minima:{Number(minGradi).toFixed(0)}℃</span>
+          <div className="d-flex flex-column flex-md-row align-items-center justify-content-around">
+            <h2 className="text-center flex-fill ms-md-6  m-0 fs-1">
+              {location.pathname === "/" && `${meteoObj.name} ─${" "}`}
+              <span>{`${new Date(meteoObj.dt * 1000).getHours()}:${new Date(
+                meteoObj.dt
+              ).getMinutes()}`}</span>
+            </h2>
+            <Button
+              className="me-md-5 mt-3 mt-md-0 bg-alert border-0 fs-4 text-yellow"
+              onClick={() => {
+                starSelected ? setStarSelected(false) : setStarSelected(true);
+                starSelected
+                  ? dispatch({ type: "REMOVE_PREFERITI", payload: meteoObj })
+                  : dispatch({ type: "SET_PREFERITI", payload: meteoObj });
+              }}
+            >
+              {starSelected ? (
+                <i className="bi bi-star-fill"></i>
+              ) : (
+                <i className="bi bi-star"></i>
+              )}
+            </Button>
           </div>
-          <Container>
+          <hr className="border-top border-4" />
+          <Container
+            className={`${location.pathname === "/" && "cursor"}`}
+            onClick={() => {
+              location.pathname === "/" &&
+                navigate(`/details/${JSON.stringify(meteoObj.coord)}`);
+              dispatch({ type: "SET_ACTUAL_METEO", payload: meteoObj });
+            }}
+          >
+            <p className="fs-8 text-center my-lineHeigth m-0">
+              {Number(gradi).toFixed(0)}℃
+            </p>
+            <span className="d-block text-center my-2 fs-5">
+              percepita: {Number(meteoObj.main.feels_like).toFixed(0)}℃
+            </span>
+            <div className="d-flex justify-content-center gap-5 mb-4 ">
+              <span className=" fs-5">
+                Massima:{Number(maxGradi).toFixed(0)}℃
+              </span>
+              <span className=" fs-5">
+                Minima:{Number(minGradi).toFixed(0)}℃
+              </span>
+            </div>
+
             <Row
               xs={1}
               md={2}
