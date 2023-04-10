@@ -21,9 +21,15 @@ const HomeMain = ({ meteoObj, setPreferiti }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [meteoObj]);
 
-  // useEffect(()=>{
-
-  // },[])
+  useEffect(() => {
+    preferiti.forEach((element) => {
+      if (element.id === meteoObj.id) {
+        console.log(element.id === meteoObj.id, meteoObj.id, element.id);
+        setStarSelected(true);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     window.localStorage.setItem(
