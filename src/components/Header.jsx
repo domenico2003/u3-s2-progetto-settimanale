@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Header = ({
   milanoMeteo,
   milanoGradi,
@@ -16,6 +17,8 @@ const Header = ({
   queryGradi,
   queryMeteo,
 }) => {
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
   let [localita, setLocalita] = useState(null);
 
   let handleSubmit = async (e) => {
@@ -47,12 +50,15 @@ const Header = ({
       <Container>
         <div className="w-25 pt-5 mx-auto d-flex justify-content-center pb-3">
           {queryMeteo && (
-            <Link
-              to={`/details/${JSON.stringify(queryMeteo.coord)}`}
+            <span
+              onClick={() => {
+                navigate(`/details/${JSON.stringify(queryMeteo.coord)}`);
+                dispatch({ type: "SET_ACTUAL_METEO", payload: queryMeteo });
+              }}
               className="btn btn-home-info px-5 rounded-5 hover button-shadow"
             >
               {localita?.name} {queryGradi.toFixed(0)} ℃
-            </Link>
+            </span>
           )}
         </div>
         <Form className=" pb-5 w-75 mx-auto rounded-5" onSubmit={handleSubmit}>
@@ -66,28 +72,37 @@ const Header = ({
 
         <div className="w-75 mx-auto flex-column flex-md-row d-flex gap-3 justify-content-around pb-5 align-items-center">
           {milanoMeteo && (
-            <Link
-              to={`/details/${JSON.stringify(milanoMeteo.coord)}`}
+            <span
+              onClick={() => {
+                navigate(`/details/${JSON.stringify(milanoMeteo.coord)}`);
+                dispatch({ type: "SET_ACTUAL_METEO", payload: milanoMeteo });
+              }}
               className="btn btn-home-info px-5 hover rounded-5 button-shadow"
             >
               Milano {milanoGradi.toFixed(0)} ℃
-            </Link>
+            </span>
           )}
           {romaMeteo && (
-            <Link
-              to={`/details/${JSON.stringify(romaMeteo.coord)}`}
+            <span
+              onClick={() => {
+                navigate(`/details/${JSON.stringify(romaMeteo.coord)}`);
+                dispatch({ type: "SET_ACTUAL_METEO", payload: romaMeteo });
+              }}
               className="btn btn-home-info px-5 hover rounded-5 button-shadow"
             >
               Roma {romaGradi.toFixed(0)} ℃
-            </Link>
+            </span>
           )}
           {napoliMeteo && (
-            <Link
-              to={`/details/${JSON.stringify(napoliMeteo.coord)}`}
+            <span
+              onClick={() => {
+                navigate(`/details/${JSON.stringify(napoliMeteo.coord)}`);
+                dispatch({ type: "SET_ACTUAL_METEO", payload: napoliMeteo });
+              }}
               className="btn btn-home-info px-5 hover rounded-5 button-shadow"
             >
               Napoli {napoliGradi.toFixed(0)} ℃
-            </Link>
+            </span>
           )}
         </div>
       </Container>
