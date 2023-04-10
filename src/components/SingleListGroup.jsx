@@ -10,7 +10,9 @@ const SingleListGroup = ({ singlePref }) => {
       className={`cursor hover ${selectedName ? "" : "active"}`}
       onClick={() => {
         !selectedName ? setSelectedName(true) : setSelectedName(false);
-        dispatch({ type: "SELECT_OBJ", payload: singlePref });
+        selectedName
+          ? dispatch({ type: "SELECT_OBJ", payload: null })
+          : dispatch({ type: "SELECT_OBJ", payload: singlePref });
       }}
       key={singlePref.id}
     >
