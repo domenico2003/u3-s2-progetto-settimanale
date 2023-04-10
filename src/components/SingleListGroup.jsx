@@ -12,6 +12,7 @@ const SingleListGroup = ({ singlePref }) => {
         !selectedName ? setSelectedName(true) : setSelectedName(false);
         dispatch({ type: "SELECT_OBJ", payload: singlePref });
       }}
+      key={singlePref.id}
     >
       {singlePref.name}
     </ListGroup.Item>
