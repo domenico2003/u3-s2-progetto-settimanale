@@ -19,7 +19,9 @@ const PreferHome = ({ meteoPreferiti }) => {
             xl={5}
             className=" d-flex justify-content-center align-items-center "
           >
-            <ListGroup className="w-75 shadow-xl">
+            <ListGroup
+              className={`w-75 ${meteoPreferiti.length !== 0 && "shadow-xl"}`}
+            >
               {meteoPreferiti.map((singlePref) => {
                 return <SingleListGroup singlePref={singlePref} />;
               })}
